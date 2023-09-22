@@ -1,3 +1,9 @@
 ﻿.svn
 7_1_2/Migrations
 .vs
+*.dll
+*.exe
+*.cache
+*.nuget.*
+*/bin/*
+*/obj/*
