@@ -5,6 +5,13 @@ namespace _7_1_2.Tests
   [TestClass()]
   public class ProgramTests
   {
+
+    [TestMethod()]
+    public void ConnectionAvailabilityTest()
+    {
+      Assert.IsTrue(_context.Database.CanConnect(), "Connection is not available");
+    }
+
     [TestMethod()]
     public void FindContractorTest()
     {
@@ -73,12 +80,19 @@ namespace _7_1_2.Tests
 
     private AppDbContext_7_1_2? _context;
 
+    private Lazy<AppDbContext_7_1_2> InitContext()
+    {
+
+      AppDbContextFactory_7_1_2 _factory = new AppDbContextFactory_7_1_2();
+      return new(() => _factory.CreateDbContext(Array.Empty<string>()));
+    }
+
     [TestCleanup]
     public void TestCleanup()
     {
       if (_context == null)
       {
-        Assert.IsTrue(false);
+        Assert.IsTrue(false, "Context is null");
         return;
       }
       _context.Database.RollbackTransaction();
@@ -87,16 +101,12 @@ namespace _7_1_2.Tests
     [TestInitialize]
     public void TestInitialize()
     {
-      if (_context != null)
-      {
-        Assert.IsTrue(false);
-        return;
-      }
 
-      var factory = new AppDbContextFactory_7_1_2();
-      _context = factory.CreateDbContext(Array.Empty<string>());
+      this._context = this.InitContext().Value;
+
+      Assert.IsTrue(_context.Database.CanConnect(), "Connection is not available");
+
       _context.Database.EnsureCreated();
-      if (_context == null) { return; }
       _context.Database.BeginTransaction();
     }
   }
