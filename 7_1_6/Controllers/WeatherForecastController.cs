@@ -1,3 +1,4 @@
+using _7_1_6.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _7_1_6.Controllers
@@ -21,13 +22,15 @@ namespace _7_1_6.Controllers
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
-      return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-      {
-        Date = DateTime.Now.AddDays(index),
-        TemperatureC = Random.Shared.Next(-20, 55),
-        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-      })
-      .ToArray();
+      return Enumerable
+        .Range(1, 5)
+        .Select(index => new WeatherForecast
+        {
+          Date = DateTime.Now.AddDays(index),
+          TemperatureC = Random.Shared.Next(-20, 55),
+          Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        })
+        .ToArray();
     }
   }
 }
