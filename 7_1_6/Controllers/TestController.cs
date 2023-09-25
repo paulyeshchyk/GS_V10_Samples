@@ -8,7 +8,7 @@ namespace _7_1_6.Controllers
   [Route("[controller]")]
   public class TestController : ControllerBase
   {
-    [HttpGet(Name = "GetTest")]
+    [HttpGet]
     public IEnumerable<int> Get()
     {
       return new[] { 1, 2, 3 };
