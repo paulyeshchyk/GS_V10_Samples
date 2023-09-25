@@ -5,12 +5,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>_7_1_6</RootNamespace>
-    <UserSecretsId>7d542bf2-ac80-48f8-a3ec-f77502346f59</UserSecretsId>
+    <UserSecretsId>e66de5bf-1ae2-47ae-95c0-dd4feeecafed</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
 </Project>
