@@ -1,10 +1,10 @@
 using _7_1_6.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace _7_1_6.Controllers
+namespace _7_1_6.API.Controllers
 {
   [ApiController]
-  [Route("[controller]")]
+  [Route("api/[controller]")]
   public class WeatherForecastController : ControllerBase
   {
     private static readonly string[] Summaries = new[]

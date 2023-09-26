@@ -19,7 +19,7 @@ namespace _7_1_6
     {
       services.AddControllers();
       services.AddEndpointsApiExplorer();
-      services.AddSwaggerGen();
+      services.AddSwaggerGen(c => { c.EnableAnnotations();});
 
     }
 
@@ -30,6 +30,11 @@ namespace _7_1_6
         app.UseSwagger();
         app.UseSwaggerUI();
       }
+
+      app.UseCors(options =>options.WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        );
 
       app.UseHttpsRedirection();
 

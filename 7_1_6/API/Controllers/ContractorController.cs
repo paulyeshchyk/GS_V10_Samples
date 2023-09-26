@@ -1,14 +1,15 @@
 ﻿using _7_1.Entities;
 using _7_1_2;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace _7_1_6.Controllers
+namespace _7_1_6.API.Controllers
 {
   [ApiController]
   [Route("api/[controller]")] //конечный путь https://localhost:7175/api/Contractor
   public class ContractorController : ControllerBase
   {
-    private AppDbContext_7_1_2 _dbContext = new AppDbContext_7_1_2();
+    private readonly AppDbContext_7_1_2 _dbContext = new();
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<RefContractor>>> GetContractorList()
@@ -17,18 +18,14 @@ namespace _7_1_6.Controllers
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RefContractor>> GetContractor(int id)
+    public async Task<ActionResult<RefContractor>> GetContractor(Guid id)
     {
       var result = await _dbContext.Contractor.FindAsync(id);
-      if (result == null)
-      {
-        return NotFound();
-      }
-      return result;
+      return result == null ? NotFound() : new ActionResult<RefContractor>(result);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult<int>> DeleteContractor(int id)
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult<Guid>> DeleteContractor(Guid id)
     {
       var contractor = await _dbContext.Contractor.FindAsync(id);
       if (contractor == null)
@@ -37,18 +34,33 @@ namespace _7_1_6.Controllers
       }
       _dbContext.Contractor.Remove(contractor);
       await _dbContext.SaveChangesAsync();
-      return 0;
+      return new ActionResult<Guid>(id);
     }
 
+    [HttpPut("{id:guid}")]
+    public async Task<ActionResult<RefContractor>> Put(Guid id, [FromBody] RefContractor contractor)
+    {
+
+      var existing = await _dbContext.Contractor.FindAsync(id);
+      if (existing == null)
+      {
+        return NotFound();
+      }
+
+      existing.Address = contractor.Address;
+      existing.Name = contractor.Name;
+      _dbContext.Entry(existing).State = EntityState.Modified;
+      await _dbContext.SaveChangesAsync();
+      return new ActionResult<RefContractor>(existing);
+    }
 
     [HttpPost]
-    public async Task<ActionResult<RefContractor>> PostContractor(RefContractor contractor)
+    public async Task<ActionResult<Guid>> PostContractor(RefContractor contractor)
     {
       _dbContext.Contractor.Add(contractor);
       await _dbContext.SaveChangesAsync();
-      return CreatedAtAction(nameof(GetContractor), new { Id = contractor.Id, Name = contractor.Name }, contractor);
+      return new ActionResult<Guid>(contractor.Id);
     }
-
 
   }
 }
