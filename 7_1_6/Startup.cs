@@ -1,26 +1,15 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-
-namespace _7_1_6
+﻿namespace _7_1_6
 {
   public class Startup
   {
-
-    public IConfiguration Configuration
-    {
-      get;
-    }
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
     }
-    // Use this method to add services to the container.  
-    public void ConfigureServices(IServiceCollection services)
-    {
-      services.AddControllers();
-      services.AddEndpointsApiExplorer();
-      services.AddSwaggerGen(c => { c.EnableAnnotations();});
 
+    public IConfiguration Configuration
+    {
+      get;
     }
 
     public void Configure(WebApplication app, IWebHostEnvironment env)
@@ -31,7 +20,7 @@ namespace _7_1_6
         app.UseSwaggerUI();
       }
 
-      app.UseCors(options =>options.WithOrigins("http://localhost:4200")
+      app.UseCors(options => options.WithOrigins("http://localhost:4200")
         .AllowAnyHeader()
         .AllowAnyMethod()
         );
@@ -43,6 +32,14 @@ namespace _7_1_6
       app.MapControllers();
 
       app.Run();
+    }
+
+    // Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+      services.AddControllers();
+      services.AddEndpointsApiExplorer();
+      services.AddSwaggerGen(c => { c.EnableAnnotations(); });
     }
   }
 }
