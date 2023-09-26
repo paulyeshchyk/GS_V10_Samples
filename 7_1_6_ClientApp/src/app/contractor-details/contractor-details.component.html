@@ -1,0 +1,16 @@
+<div class="bg-body-secondary text-center py-5 rounded-2">
+<h1 class="display-6 fw-bold">Contractor</h1>
+
+</div>
+<div class="row mt-5">
+    <div class="col-6">
+        <app-contractor-detail-form/>
+    </div>
+    <div class="col-6">
+        <ul class = "list-group">
+            <li *ngFor="let contrac of service.list">
+                {{contrac.name}}
+            </li>
+            </ul>
+    </div>
+</div>
