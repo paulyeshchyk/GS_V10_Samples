@@ -1,0 +1,22 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="contractorIdentifier" [value]="contractorService.theContractor.id">
+
+    <!-- name input -->
+    <div class="mb-3">
+        <label>Contractor</label>
+        <input class="form-control form-control-lg" placeholder="Contractor name" #name="ngModel" name="name"
+            [(ngModel)]="contractorService.theContractor.name"
+            required minlength="2" maxlength="255">
+    </div>
+    <!-- address input -->
+    <div class="mb-3">
+        <label>Address</label>
+        <input class="form-control form-control-lg" placeholder="Address" #address="ngModel" name="address"
+            [(ngModel)]="contractorService.theContractor.address"
+            required minlength="2" maxlength="255">
+    </div>
+    <!-- delete button -->
+    <div class="d-grid">
+        <button class="btn btn-lg btn-success" type="submit">Submit</button>
+    </div>
+</form>

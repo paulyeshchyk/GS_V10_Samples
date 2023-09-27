@@ -55,7 +55,7 @@ namespace _7_1_6.API.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult<Guid>> PostContractor(RefContractor contractor)
+    public async Task<ActionResult<Guid>> PostContractor([FromBody]RefContractor contractor)
     {
       _dbContext.Contractor.Add(contractor);
       await _dbContext.SaveChangesAsync();

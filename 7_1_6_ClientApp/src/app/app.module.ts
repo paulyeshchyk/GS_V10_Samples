@@ -3,18 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { ContractorDetailsComponent } from './contractor-details/contractor-details.component';
-import { ContractorDetailFormComponent } from './contractor-details/contractor-detail-form/contractor-detail-form.component';
+import { ContractorListComponent } from './contractor/list/contractor-list.component';
+import { ContractorFormComponent } from './contractor/form/contractor-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContractorDetailsComponent,
-    ContractorDetailFormComponent
+    ContractorListComponent,
+    ContractorFormComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
