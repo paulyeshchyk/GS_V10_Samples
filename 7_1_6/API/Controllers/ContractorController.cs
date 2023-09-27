@@ -12,7 +12,7 @@ namespace _7_1_6.API.Controllers
     private readonly AppDbContext_7_1_2 _dbContext = new();
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<RefContractor>>> GetContractorList()
+    public async Task<ActionResult<IEnumerable<RefContractor>>> GetContractorList([FromQuery] int? page, int? pageSize)
     {
       return await Task.FromResult(_dbContext.Contractor.ToList());
     }
