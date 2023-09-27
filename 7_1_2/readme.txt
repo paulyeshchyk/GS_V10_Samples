@@ -17,3 +17,7 @@ VS
 	dotnet ef migrations add Initial
 	dotnet ef database update
 
+
+
+pagination
+https://code-maze.com/paging-aspnet-core-webapi/
