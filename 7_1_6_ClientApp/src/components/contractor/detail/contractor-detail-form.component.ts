@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { ContractorService } from 'src/app/contractor/service/contractor.service';
+import { ContractorService } from 'src/components/contractor/model/contractor.service';
 import { NgForm } from '@angular/forms'
 
 @Component({
-  selector: 'app-contractor-detail-form',
-  templateUrl: './contractor-form.component.html',
+  selector: 'contractor-detail-form',
+  templateUrl: './contractor-detail-form.component.html',
   styles: [
   ]
 })
 
-export class ContractorFormComponent {
+export class ContractorDetailComponent {
 
   constructor(public contractorService: ContractorService) { }
 
@@ -39,8 +39,7 @@ export class ContractorFormComponent {
   }
 
   onUpdateRecord(form: NgForm) {
-    this.contractorService
-    .put()
+    this.contractorService.put()
     .subscribe({
       next: res => {
         console.log(res);
@@ -53,6 +52,4 @@ export class ContractorFormComponent {
       }
     })   
   }
-
-
 }

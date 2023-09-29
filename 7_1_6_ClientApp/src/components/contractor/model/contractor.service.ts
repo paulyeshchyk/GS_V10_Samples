@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { ContractorDTO, ContractorDTO_Post } from 'src/app/contractor/model/contractor.model';
+import { ContractorDTO, ContractorDTO_Post } from 'src/components/contractor/model/contractor.model';
 import { NgForm } from '@angular/forms'
 
 

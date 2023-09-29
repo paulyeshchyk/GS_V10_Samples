@@ -21,3 +21,8 @@ VS
 
 pagination
 https://code-maze.com/paging-aspnet-core-webapi/
+
+identity
+https://www.endpointdev.com/blog/2022/06/implementing-authentication-in-asp.net-core-web-apis/
+https://metanit.com/sharp/aspnet6/13.1.php
+

@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { ContractorListComponent } from './contractor/list/contractor-list.component';
-import { ContractorFormComponent } from './contractor/form/contractor-form.component';
+import { ContractorListComponent } from 'src/components/contractor/list/contractor-list-form.component';
+import { ContractorDetailComponent } from 'src/components/contractor/detail/contractor-detail-form.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContractorListComponent,
-    ContractorFormComponent
+    ContractorDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -21,4 +21,5 @@ import { FormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -19,7 +19,7 @@ namespace _7_1_6.Controllers
       _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet(Name = "Get")]
     public IEnumerable<WeatherForecast> Get()
     {
       return Enumerable
