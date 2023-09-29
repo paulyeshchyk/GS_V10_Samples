@@ -27,7 +27,7 @@ namespace _7_1_5.Tests
     }
 
     [TestMethod()]
-    public void BreakContractorTest()
+    public void AddContractRemoveContractorTest()
     {
       string subject = "Subj2";
 
@@ -51,7 +51,14 @@ namespace _7_1_5.Tests
       _context.SaveChanges();
 
       Assert.IsNull(document.Contractor);
+
+
+      var contractorWithoutContract = _context.Contractor.Any(c => c.Name.Equals(contractorName));
+      Assert.IsTrue(contractorWithoutContract,"Contractor is not available");
+
     }
+
+
 
     private AppDbContext_7_1_5? _context;
 
