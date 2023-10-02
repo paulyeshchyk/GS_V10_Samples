@@ -1,4 +1,5 @@
-﻿using _7_1.Entities;
+﻿using System.Diagnostics;
+using _7_1.Entities;
 using _7_1_2;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,17 @@ namespace _7_1_6.API.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<RefContractor>>> GetContractorList([FromQuery] int? page, int? pageSize)
     {
-      return await Task.FromResult(_dbContext.Contractor.ToList());
+      var thePageIndex = Math.Abs(page ?? 0);
+      var thePageSize = Math.Abs(pageSize ?? 0);
+
+      
+
+      if (thePageSize == 0)
+      {
+        return await Task.FromResult(_dbContext.Contractor.ToList());
+      }
+      var skipSize = thePageIndex * thePageSize;
+      return await Task.FromResult(_dbContext.Contractor.Skip(skipSize).Take(thePageSize).ToList());
     }
 
     [HttpGet("{id}")]

@@ -6,7 +6,7 @@ namespace _7_1_5.Tests
   public class ProgramTests
   {
     [TestMethod()]
-    public void AddContractorTest()
+    public void _7_1_5_B_Test()
     {
       string customerName = Guid.NewGuid().ToString();
       string contractorName = Guid.NewGuid().ToString();
@@ -55,9 +55,39 @@ namespace _7_1_5.Tests
 
       var contractorWithoutContract = _context.Contractor.Any(c => c.Name.Equals(contractorName));
       Assert.IsTrue(contractorWithoutContract,"Contractor is not available");
-
     }
 
+    [TestMethod()]
+    public void AddTwoContractsRemoveContractorTest()
+    {
+      string subject = "Subj2";
+
+      var contractorName = Guid.NewGuid().ToString();
+
+      Assert.IsNotNull(_context);
+
+      var contractor = Program_7_1_5.AddContractor(_context, contractorName);
+      Assert.IsNotNull(contractor);
+      string customerName = Guid.NewGuid().ToString();
+      var customer = Program_7_1_5.AddCustomer(_context, customerName);
+      Assert.IsNotNull(customer);
+      var contract1 = Program_7_1_5.AddContract(contractor: contractor, customer: customer, subject: subject);
+      var contract2 = Program_7_1_5.AddContract(contractor: contractor, customer: customer, subject: subject);
+      Assert.IsNotNull(contract1);
+      Assert.IsTrue(contract1.Contractor?.Name.Equals(contractorName));
+      Assert.IsTrue(contract1.Customer?.Name.Equals(customerName));
+      Assert.IsTrue(contract1.Subject.Equals(subject));
+      _context.SaveChanges();
+
+      contract1.Contractor = null;
+      _context.SaveChanges();
+
+      Assert.IsNull(contract1.Contractor);
+
+
+      var contractorWithoutContract = _context.Contractor.Any(c => c.Name.Equals(contractorName));
+      Assert.IsTrue(contractorWithoutContract, "Contractor is not available");
+    }
 
 
     private AppDbContext_7_1_5? _context;

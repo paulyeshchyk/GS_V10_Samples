@@ -10,7 +10,6 @@ export class AppComponent {
   title = '7_1_6_ClientApp';
 }
 
-
 @Component({
   selector: 'a-comp',
   template: '<span>A Component</span>'
